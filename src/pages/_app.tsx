@@ -6,6 +6,8 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import { ThemeProvider } from "~/components/theme-provider";
+import { Toaster } from "~/components/ui/sonner";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,7 +16,15 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <div className={GeistSans.className}>
-        <Component {...pageProps} />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          forcedTheme="dark"
+          disableTransitionOnChange
+        >
+          <Component {...pageProps} />
+          <Toaster />
+        </ThemeProvider>
       </div>
     </SessionProvider>
   );

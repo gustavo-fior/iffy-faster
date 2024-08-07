@@ -12,7 +12,7 @@ model Requests {
     iffy          Boolean
     reasoning     String
     falsePositive Boolean
-    feedback      String
+    feedback      String?
     createdAt     DateTime @default(now())
     updatedAt     DateTime @updatedAt
 
@@ -49,14 +49,15 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String     @id @default(cuid())
     name          String?
-    email         String?   @unique
+    guidelines    String?
+    email         String?    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
-    requests         Requests[]
+    requests      Requests[]
 }
 
 model VerificationToken {
