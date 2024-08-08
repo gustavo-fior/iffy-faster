@@ -62,9 +62,13 @@ export default async function handler(
 
   const { content } = req.body as RequestBody;
 
+  console.log(content);
+
   const userId = Buffer.from(req.headers.authorization, "base64").toString(
     "utf-8",
   );
+
+  console.log(userId);
 
   const requestCount = await prisma.requests.count({
     where: {
@@ -72,13 +76,17 @@ export default async function handler(
     },
   });
 
+  console.log(requestCount);
+
   const user = await prisma.user.findUnique({
     where: {
       id: userId,
     },
   });
 
-  if (requestCount >= 50) {
+  console.log(user);
+
+  if (requestCount >= 20) {
     return res.status(429).end();
   }
 
