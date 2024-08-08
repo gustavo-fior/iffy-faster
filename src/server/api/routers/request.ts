@@ -9,6 +9,9 @@ export const requestRouter = createTRPCRouter({
       where: {
         userId,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   }),
   addFeedback: protectedProcedure

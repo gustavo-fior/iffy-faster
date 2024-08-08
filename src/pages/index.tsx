@@ -73,6 +73,8 @@ export default function Home() {
 
     setFeedback("");
     setIsFalsePositive(false);
+
+    await requests.refetch();
   };
 
   const handleAddGuidelines = async () => {
